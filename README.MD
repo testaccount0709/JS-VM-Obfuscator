@@ -1,6 +1,6 @@
 # JS-VM-Obfuscator
 
-JS-VM-Obfuscator, or **jsvobf** for short, is a Babel-based JavaScript obfuscator. Has been put back up on 9/24/26 and is used in many of my other projects
+JS-VM-Obfuscator, or **jsvobf** for short, is a Babel-based JavaScript obfuscator. Has been put back up on 9/24/26
 
 
 ## Layout
