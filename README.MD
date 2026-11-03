@@ -51,8 +51,8 @@ npm run jsvobf -- --help
 
 `index.ts` exports the library surface:
 
-- `obfuscate(source, options)` — parse, transform, generate. Returns `{ code, stats }`.
-- `PIPELINE_STAGES` and `stageTimings(stats)` — ordered stage names and the `time_<stage>` measurements stored on `stats`.
+- `obfuscate(source, options)`: parse, transform, generate. Returns `{ code, stats }`.
+- `PIPELINE_STAGES` and `stageTimings(stats)`: ordered stage names and the `time_<stage>` measurements stored on `stats`.
 - `DEFAULT_OPTIONS`, `PRESETS`, `mergeOptions`, `applyPreset`, `levelAll`.
 - `packStage1` / `packStage2`. Stage 3 is CLI-only (`packer/stage3.ts`).
 
@@ -105,12 +105,12 @@ Each transform is a `Level` (`0 | 1 | 2 | 3`). `0` is off. Higher levels add wor
 | `cff` | Light flattening | Stronger opaque predicates | Full dispatcher, including nested structure |
 | `strings` | One table, one global key | Per-string stream keys | Spilled fragments reassembled at the use site |
 | `property` | Tokenized member access | Computed keys, more helper variants | Proxy around the resolver only |
-| `identifiers` | Minified names | Confusing names, private-name mangling, shadow decoys | — |
-| `deadcode` | Opaque dead branches | Heavier decoys | — |
-| `extract-objects` | Static-key reads | Also `++` and compound assignment | — |
-| `rfactory` | Factory-wrapped declarations | Decoy metadata on the produced function | — |
+| `identifiers` | Minified names | Confusing names, private-name mangling, shadow decoys |: |
+| `deadcode` | Opaque dead branches | Heavier decoys |: |
+| `extract-objects` | Static-key reads | Also `++` and compound assignment |: |
+| `rfactory` | Factory-wrapped declarations | Decoy metadata on the produced function |: |
 | `antidebug` | Debugger timing corrupts the string key | Constructor / `toString` checks, checksums | Cache trap and a second key-table checksum |
-| `numbers`, `regex`, `scatter`, `reshape` | On or off | — | — |
+| `numbers`, `regex`, `scatter`, `reshape` | On or off |: |: |
 
 `antidebug` stays off in `levelAll()`. It is on in the `insane` preset (`2`) and the `compact` preset (`1`).
 
@@ -120,10 +120,10 @@ Presets in `core/config.ts`: `light`, `medium`, `heavy`, `insane`, `performance`
 
 `vm/` turns a function into a stub that calls the embedded interpreter.
 
-- `ops.ts` — opcode names. Numbering is sequential at level 1 and shuffled per build from level 2.
-- `compile.ts` — lowers one function body to bytecode. Throws `CompileError` when a construct cannot be represented; that function is left as source and counted in `stats`.
-- `interpreter.ts` — emits the interpreter function for the build's opcode map.
-- `embed.ts` — selects functions at or above `vmThreshold` statements, compiles them, and installs the runtime entry (`vmRun`).
+- `ops.ts`: opcode names. Numbering is sequential at level 1 and shuffled per build from level 2.
+- `compile.ts`: lowers one function body to bytecode. Throws `CompileError` when a construct cannot be represented; that function is left as source and counted in `stats`.
+- `interpreter.ts`: emits the interpreter function for the build's opcode map.
+- `embed.ts`: selects functions at or above `vmThreshold` statements, compiles them, and installs the runtime entry (`vmRun`).
 
 ### Packer
 
